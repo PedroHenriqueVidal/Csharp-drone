@@ -10,8 +10,8 @@ public class Drone
     private int cameraX;
     private int cameraY;
     private bool gravando;
-    public bool parado;
-    private bool aproximado;
+    private bool parado;
+    public bool aproximado;
 
     public Drone()
     {

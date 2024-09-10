@@ -72,86 +72,95 @@ namespace MenuUI
 
         private void controlar()
         {
-
-            while (this.opcao != 12)
+            if (bracoDir.bracoEmRepouso == true)
             {
-                try
+                while (this.opcao != 12)
                 {
-                    Console.WriteLine("=========================================================================================================");
-                    Console.WriteLine("Controlando drone...\n" +
-                    "1 - Ajustar altura\n" +
-                    "2 - Subir\n" +
-                    "3 - Descer\n" +
-                    "4 - Ajustar velocidade\n" +
-                    "5 - Acelerar\n" +
-                    "6 - Desacelerar\n" +
-                    "7 - Ajustar Direção\n" +
-                    "8 - Virar à esquerda\n" +
-                    "9 - Virar à direita\n" +
-                    "10 - Aproximar de Objeto mais próximo\n" +
-                    "11 - Desaproximar de Objeto mais próximo\n" +
-                    "12 - Retornar");
-                    Console.Write("Selecione um dos números: ");
-                    this.opcao = int.Parse(Console.ReadLine());
-
-                    switch (this.opcao)
+                    try
                     {
-                        case 1:
-                            Console.WriteLine("=========================================================================================================");
-                            Console.WriteLine("Digite até que altura o drone deve ir. (Min.: 0.5m; Max.: 25m)");
-                            drone.ajustarAltura(float.Parse(Console.ReadLine()));
-                            break;
-                        case 2:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.subir();
-                            break;
-                        case 3:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.descer();
-                            break;
-                        case 4:
-                            Console.WriteLine("=========================================================================================================");
-                            Console.WriteLine("Digite até que velocidade o drone deve ir. (Min.: 0m/s; Max.: 15m/s)");
-                            drone.ajustarVelocidade(float.Parse(Console.ReadLine()));
-                            break;
-                        case 5:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.acelerar();
-                            break;
-                        case 6:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.desacelerar();
-                            break;
-                        case 7:
-                            Console.WriteLine("=========================================================================================================");
-                            Console.WriteLine("Digite até que grau o drone deve rodar");
-                            drone.ajustarDirecao(int.Parse(Console.ReadLine()));
-                            break;
-                        case 8:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.virarEsq();
-                            break;
-                        case 9:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.virarDir();
-                            break;
-                        case 10:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.aproximarObjeto();
-                            break;
-                        case 11:
-                            Console.WriteLine("=========================================================================================================");
-                            drone.desaproximarObjeto();
-                            break;
+                        Console.WriteLine("=========================================================================================================");
+                        Console.WriteLine("Controlando drone...\n" +
+                        "1 - Ajustar altura\n" +
+                        "2 - Subir\n" +
+                        "3 - Descer\n" +
+                        "4 - Ajustar velocidade\n" +
+                        "5 - Acelerar\n" +
+                        "6 - Desacelerar\n" +
+                        "7 - Ajustar Direção\n" +
+                        "8 - Virar à esquerda\n" +
+                        "9 - Virar à direita\n" +
+                        "10 - Aproximar de Objeto mais próximo\n" +
+                        "11 - Desaproximar de Objeto mais próximo\n" +
+                        "12 - Retornar");
+                        Console.Write("Selecione um dos números: ");
+                        this.opcao = int.Parse(Console.ReadLine());
 
+                        switch (this.opcao)
+                        {
+                            case 1:
+                                Console.WriteLine("=========================================================================================================");
+                                Console.WriteLine("Digite até que altura o drone deve ir. (Min.: 0.5m; Max.: 25m)");
+                                drone.ajustarAltura(float.Parse(Console.ReadLine()));
+                                break;
+                            case 2:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.subir();
+                                break;
+                            case 3:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.descer();
+                                break;
+                            case 4:
+                                Console.WriteLine("=========================================================================================================");
+                                Console.WriteLine("Digite até que velocidade o drone deve ir. (Min.: 0m/s; Max.: 15m/s)");
+                                drone.ajustarVelocidade(float.Parse(Console.ReadLine()));
+                                break;
+                            case 5:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.acelerar();
+                                break;
+                            case 6:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.desacelerar();
+                                break;
+                            case 7:
+                                Console.WriteLine("=========================================================================================================");
+                                Console.WriteLine("Digite até que grau o drone deve rodar");
+                                drone.ajustarDirecao(int.Parse(Console.ReadLine()));
+                                break;
+                            case 8:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.virarEsq();
+                                break;
+                            case 9:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.virarDir();
+                                break;
+                            case 10:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.aproximarObjeto();
+                                break;
+                            case 11:
+                                Console.WriteLine("=========================================================================================================");
+                                drone.desaproximarObjeto();
+                                break;
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("=========================================================================================================");
+                        Console.WriteLine("Por favor, digite um número válido. Error:" + e.Message);
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("=========================================================================================================");
-                    Console.WriteLine("Por favor, digite um número válido. Error:" + e.Message);
-                }
             }
+            else
+            {
+                Console.WriteLine("=========================================================================================================");
+                Console.WriteLine("Incapaz de controlar drone enquanto braço está em atividade");
+            }
+
+            
         }
 
         private void controlarCamera()
@@ -224,38 +233,47 @@ namespace MenuUI
 
         private void controlarBracos()
         {
-            while (this.opcao != 4)
+            if (drone.aproximado == true)
             {
-                try
+                while (this.opcao != 4)
                 {
-                    Console.WriteLine("=========================================================================================================");
-                    Console.WriteLine("Qual dos braços você deseja controlar?\n" +
-                        "1 - Braço Esquerdo\n" +
-                        "2 - Braço Direito\n" +
-                        "4 - Retornar");
-                    Console.Write("Selecione um dos números: ");
-                    this.opcao = int.Parse(Console.ReadLine());
-
-                    switch (this.opcao)
+                    try
                     {
-                        case 1:
-                            Console.WriteLine("=========================================================================================================");
-                            this.controlarBracoEsq();
-                            break;
-                        case 2:
-                            Console.WriteLine("=========================================================================================================");
-                            this.controlarBracoDir();
-                            break;
-                        
+                        Console.WriteLine("=========================================================================================================");
+                        Console.WriteLine("Qual dos braços você deseja controlar?\n" +
+                            "1 - Braço Esquerdo\n" +
+                            "2 - Braço Direito\n" +
+                            "4 - Retornar");
+                        Console.Write("Selecione um dos números: ");
+                        this.opcao = int.Parse(Console.ReadLine());
 
+                        switch (this.opcao)
+                        {
+                            case 1:
+                                Console.WriteLine("=========================================================================================================");
+                                this.controlarBracoEsq();
+                                break;
+                            case 2:
+                                Console.WriteLine("=========================================================================================================");
+                                this.controlarBracoDir();
+                                break;
+
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("=========================================================================================================");
+                        Console.WriteLine("Por favor, digite um número válido Error:" + e.Message);
                     }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("=========================================================================================================");
-                    Console.WriteLine("Por favor, digite um número válido Error:" + e.Message);
-                }
             }
+            else
+            {
+                Console.WriteLine("=========================================================================================================");
+                Console.WriteLine("Não pode controlar braços enquanto se movendo ou longe de objeto");
+            }
+            
         }
 
         private void controlarBracoEsq()

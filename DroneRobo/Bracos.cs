@@ -34,7 +34,7 @@ public class Bracos
 
     public void ativarOuDesativarBraco()
     {
-        if (bracoEmRepouso == true && bracoOcupado == false && )
+        if (bracoEmRepouso == true && bracoOcupado == false )
         {
             Console.WriteLine("Braço foi para modo 'em atividade'");
             bracoEmRepouso = false;
@@ -92,7 +92,7 @@ public class Bracos
         {
             rotacaoPulso += 360;
         }
-        Console.WriteLine($"Direcionado horizontalmente a câmera para {rotacaoPulso}° graus");
+        Console.WriteLine($"Direcionado o pulso para {rotacaoPulso}° graus");
     }
 
     public void girarPulsoPosit()
